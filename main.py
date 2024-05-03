@@ -3,42 +3,46 @@ import re
 
 custom_commands = {
 
-    "$instagram": '''> **You can Follow me on Instagram using this link: :arrow_heading_down: **
-> 
-> https://www.instagram.com/itsmeprinceyt''',
+    "..instagram":'''    > **You can Follow me on Instagram using this link: :arrow_heading_down: **
+                        > 
+                        > https://www.instagram.com/itsmeprinceyt''',
 
-    "$youtube": '''> **You can Subscribe to our YouTube Channel using this link: :arrow_heading_down: **
-> 
-> https://www.youtube.com/@itsmeprince0''',
+    "..youtube":'''     > **You can Subscribe to our YouTube Channel using this link: :arrow_heading_down: **
+                        > 
+                        > https://www.youtube.com/@itsmeprince0''',
 
-    "$discord": '''> **Discord Official Invite Link: :arrow_heading_down: **
-> 
-> https://discord.gg/HgXNs4p5cx''',
+    "..discord":'''     > **Discord Official Invite Link: :arrow_heading_down: **
+                        > 
+                        > https://discord.gg/HgXNs4p5cx''',
 
-    "$clips": '''> **YouTube Livestream Funny Clips: :arrow_heading_down: **
-> 
-> https://www.youtube.com/playlist?list=PLE3BGeUsE3iqhCkZaXgHTPnN8s__8uNCt''',
+    "..clips":'''       > **YouTube Livestream Funny Clips: :arrow_heading_down: **
+                        > 
+                        > https://www.youtube.com/playlist?list=PLE3BGeUsE3iqhCkZaXgHTPnN8s__8uNCt''',
 
-    "$whatsapp": '''> **You can Join My WhatsApp Broadcast Channel Using This Link :arrow_heading_down: **
-> 
-> https://www.whatsapp.com/channel/0029Va5MEeX2UPBIHUMyQY2z''',
+    "..sofiguide":'''   > **Sofi - Discord Card Game Full Guide in [HINDI]
+                        > https://youtu.be/kfrl1yO8sUA''',
 
-    "$invite": '''> **You can invite me into your server using this link :arrow_heading_down: **
-> 
-> [Click To Invite 'ItsMe Prince Helper Bot'](https://discord.com/api/oauth2/authorize?client_id=1154795653235482685&permissions=2183991393344&scope=bot)''',
+    "..whatsapp":'''     > **You can Join My WhatsApp Broadcast Channel Using This Link :arrow_heading_down: **
+                        > 
+                        > https://www.whatsapp.com/channel/0029Va5MEeX2UPBIHUMyQY2z''',
 
-    "$help": """```diff
-COMMANDS
+    "..invite":'''       > **You can invite me into your server using this link :arrow_heading_down: **
+                        > 
+                        > [Click To Invite 'ItsMe Prince Helper Bot'](https://discord.com/api/oauth2/authorize?client_id=1154795653235482685&permissions=2183991393344&scope=bot)''',
+                        
+    "..help":"""         ```diff
+                        COMMANDS
 
-• $instagram
-• $youtube
-• $discord
-• $whatsapp
-• $clips
-• $math
+                        • ..instagram
+                        • ..youtube
+                        • ..sofiguide
+                        • ..discord
+                        • ..whatsapp
+                        • ..clips
+                        • ..math
 
--Since this bot is running on free VHS, the response time may be delayed sometimes!
-```""",
+                        -Since this bot is running on free VHS, the response time may be delayed sometimes!
+                        ```""",
 }
 
 def calculate_math_operations(expression):
@@ -49,23 +53,18 @@ def calculate_math_operations(expression):
 
 def get_response(message: str, author: discord.Member) -> str:
     p_message = message.lower()
-
-    if p_message.startswith("$math "):
+    if p_message.startswith("..math "):
         math_expression = p_message[6:]
         math_expression = re.sub(r"[^0-9+\-*/()\s]", "", math_expression)
         result = calculate_math_operations(math_expression)
         return f"> **Result: {result}**"
-
-    if p_message.startswith("$ty "):
+    if p_message.startswith("..ty "):
         mentioned_user = p_message.split(' ', 1)[1]
         return f"> **Thank You {mentioned_user} For Your Great Work In PPMINITY GUILD!**"
-
     if p_message in custom_commands:
         return custom_commands[p_message]
-
     if p_message == "hey bot u suck":
         return "Not Better than Your Mom! :fire: :fire: "
-
     return ""
 
 async def send_message(message, user_message, is_private, author):
