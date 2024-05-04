@@ -29,20 +29,20 @@ custom_commands = {
     "..invite":'''       > **You can invite me into your server using this link :arrow_heading_down: **
                         > 
                         > [Click To Invite 'ItsMe Prince Helper Bot'](https://discord.com/api/oauth2/authorize?client_id=1154795653235482685&permissions=2183991393344&scope=bot)''',
-                        
-    "..help":"""         ```diff
-                        COMMANDS
+# Leave this as it is
+    "..help":"""```diff
+COMMANDS
 
-                        • ..instagram
-                        • ..youtube
-                        • ..sofiguide
-                        • ..discord
-                        • ..whatsapp
-                        • ..clips
-                        • ..math
+• ..instagram
+• ..youtube
+• ..sofiguide
+• ..discord
+• ..whatsapp
+• ..clips
+• ..math
 
-                        -Since this bot is running on free VHS, the response time may be delayed sometimes!
-                        ```""",
+-Since this bot is running on free VHS, the response time may be delayed sometimes!
+```""",
 }
 
 def calculate_math_operations(expression):
