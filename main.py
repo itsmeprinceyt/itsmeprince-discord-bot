@@ -89,8 +89,8 @@ def run_discord_bot():
 
         print(f'{username} said: "{user_message}" ({channel}')
 
-        if user_message[0] == '?':
-            user_message = user_message[1:]
+        if user_message.startswith('..'):
+            user_message = user_message[2:].strip()
             await send_message(message, user_message, is_private=True, author=message.author)
         else:
             await send_message(message, user_message, is_private=False, author=message.author)
