@@ -22,6 +22,19 @@ custom_commands = {
     "..sofiguide":'''   > **Sofi - Discord Card Game Full Guide in [HINDI]
                         > https://youtu.be/kfrl1yO8sUA''',
 
+    "..ppdevice":'''    > I'm currently using **IQOO NEO 7 ( 12+256 Variant)** - *Black*''',
+
+    "..pppc":'''```PC Specs
+CPU🐤Ryzen 5 3600
+RAM🐤A-DATA XPG DDR4 (8GBx2)
+MOTHERBOARD🐥MSI B450 PRO-VDH-MAX
+GRAPHIC CARD🐥INNO3D NVIDIA GEFORCE RTX 3060 Twin X2 OC 
+PSU✨Antec 550 Watt 80 Plus
+SSD🐥A-DATA GAMMIX 256 GB M.2
+SSD 2🐥& Patriot 1TB SATA SSD
+CABINET🐤Ant Esports ICE-200TG
+```''',
+
     "..whatsapp":'''     > **You can Join My WhatsApp Broadcast Channel Using This Link :arrow_heading_down: **
                         > 
                         > https://www.whatsapp.com/channel/0029Va5MEeX2UPBIHUMyQY2z''',
@@ -30,18 +43,21 @@ custom_commands = {
                         > 
                         > [Click To Invite 'ItsMe Prince Helper Bot'](https://discord.com/api/oauth2/authorize?client_id=1154795653235482685&permissions=2183991393344&scope=bot)''',
 # Leave this as it is
-    "..help":"""```diff
+    "..help":"""```
 COMMANDS
 
-• ..instagram
-• ..youtube
-• ..sofiguide
-• ..discord
-• ..whatsapp
-• ..clips
-• ..math
+..instagram
+..youtube
+..discord
+..clips
+..sofiguide
+..ppdevice
+..pppc
+..whatsapp
+..invite
+..math
 
--Since this bot is running on free VHS, the response time may be delayed sometimes!
+- Use '!..{command}' to receive response in DM 
 ```""",
 }
 
@@ -53,18 +69,23 @@ def calculate_math_operations(expression):
 
 def get_response(message: str, author: discord.Member) -> str:
     p_message = message.lower()
+
     if p_message.startswith("..math "):
         math_expression = p_message[6:]
         math_expression = re.sub(r"[^0-9+\-*/()\s]", "", math_expression)
         result = calculate_math_operations(math_expression)
         return f"> **Result: {result}**"
+
     if p_message.startswith("..ty "):
         mentioned_user = p_message.split(' ', 1)[1]
         return f"> **Thank You {mentioned_user} For Your Great Work In PPMINITY GUILD!**"
+
     if p_message in custom_commands:
         return custom_commands[p_message]
+
     if p_message == "hey bot u suck":
         return "Not Better than Your Mom! :fire: :fire: "
+
     return ""
 
 async def send_message(message, user_message, is_private, author):
@@ -89,8 +110,8 @@ def run_discord_bot():
 
         print(f'{username} said: "{user_message}" ({channel}')
 
-        if user_message.startswith('..'):
-            user_message = user_message[2:].strip()
+        if user_message[0] == '!':
+            user_message = user_message[1:]
             await send_message(message, user_message, is_private=True, author=message.author)
         else:
             await send_message(message, user_message, is_private=False, author=message.author)
