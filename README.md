@@ -1,1 +1,1 @@
-# itsmeprince-discord-bot
+# itsmeprince-discord-bot-js
